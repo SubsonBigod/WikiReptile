@@ -44,7 +44,7 @@ class WikiReptile(object):
         for key, value in listMap.items():
             self.save_list(key, value, deep_count)
 
-    def __open_url(url):
+    def __open_url(self, url):
         try:
             the_link = ulb.urlopen(url, timeout=10)
             the_read = the_link.read()
@@ -147,15 +147,17 @@ class WikiReptile(object):
 
 # 爬取英文维基百科https://en.wikipedia.org网页内容
 baseKey = '/wiki/Computer'
+webDeep = 1
 saveUrl = "C:/Users/dzy/PycharmProjects"
 relationFileName = "/url_link_list.txt"
 contextFileName = "/wiki.txt"
 ##
 # 传入参数
 #   base_key         初始网页（不包含维基基础地址）
+#   webDeep          爬取深度
 #   deep             爬取深度（一个网页到下一个网页为一个深度）
 #   relation_path    关系保存文件地址
 #   context_path     正文保存文件地址
-wiki_reptile = WikiReptile(baseKey, 2, saveUrl + relationFileName, saveUrl + contextFileName)
+wiki_reptile = WikiReptile(baseKey, webDeep, saveUrl + relationFileName, saveUrl + contextFileName)
 wiki_reptile.run()
 print("\t所有网页数： " + str(wiki_reptile.get_urls_len()))
